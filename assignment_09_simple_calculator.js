@@ -73,5 +73,148 @@
 // =============================================================================
 // YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
 // =============================================================================
+const readlineSync = require('readline-sync');
 
+// =============================================================================
+// add — returns the sum of two numbers
+// =============================================================================
+function add(a, b) {
+  return a + b;
+}
+
+// =============================================================================
+// subtract — returns the difference of two numbers
+// =============================================================================
+function subtract(a, b) {
+  return a - b;
+}
+
+// =============================================================================
+// multiply — returns the product of two numbers
+// =============================================================================
+function multiply(a, b) {
+  return a * b;
+}
+
+// =============================================================================
+// divide — returns the quotient of two numbers, or null if dividing by zero
+// =============================================================================
+function divide(a, b) {
+  if (b === 0) {
+    return null;
+  }
+  return a / b;
+}
+
+// =============================================================================
+// modulus — returns the remainder of a divided by b
+// =============================================================================
+function modulus(a, b) {
+  if (b === 0) {
+    return null;
+  }
+  return a % b;
+}
+
+// =============================================================================
+// exponentiate — returns a raised to the power of b
+// =============================================================================
+function exponentiate(a, b) {
+  return a ** b;
+}
+
+// =============================================================================
+// showMenu — prints the menu options
+// =============================================================================
+function showMenu() {
+  console.log("\n============================");
+  console.log("     SIMPLE CALCULATOR");
+  console.log("============================");
+  console.log("1. Addition");
+  console.log("2. Subtraction");
+  console.log("3. Multiplication");
+  console.log("4. Division");
+  console.log("5. Modulus");
+  console.log("6. Exponentiation");
+  console.log("7. Quit");
+}
+
+// =============================================================================
+// getTwoNumbers — prompts for and returns two numbers
+// =============================================================================
+function getTwoNumbers() {
+  const first = readlineSync.questionFloat("Enter first number : ");
+  const second = readlineSync.questionFloat("Enter second number: ");
+  return [first, second];
+}
+
+// =============================================================================
+// main — runs the menu loop until the user quits
+// =============================================================================
+function main() {
+  let running = true;
+
+  while (running) {
+    showMenu();
+    const choice = readlineSync.questionInt("Select an operation (1-7): ");
+
+    let a, b, result;
+
+    switch (choice) {
+      case 1:
+        [a, b] = getTwoNumbers();
+        result = add(a, b);
+        console.log(`Result: ${a} + ${b} = ${result.toFixed(2)}`);
+        break;
+
+      case 2:
+        [a, b] = getTwoNumbers();
+        result = subtract(a, b);
+        console.log(`Result: ${a} - ${b} = ${result.toFixed(2)}`);
+        break;
+
+      case 3:
+        [a, b] = getTwoNumbers();
+        result = multiply(a, b);
+        console.log(`Result: ${a} * ${b} = ${result.toFixed(2)}`);
+        break;
+
+      case 4:
+        [a, b] = getTwoNumbers();
+        result = divide(a, b);
+        if (result === null) {
+          console.log("Error: Cannot divide by zero.");
+        } else {
+          console.log(`Result: ${a} / ${b} = ${result.toFixed(2)}`);
+        }
+        break;
+
+      case 5:
+        [a, b] = getTwoNumbers();
+        result = modulus(a, b);
+        if (result === null) {
+          console.log("Error: Cannot divide by zero.");
+        } else {
+          console.log(`Result: ${a} % ${b} = ${result.toFixed(2)}`);
+        }
+        break;
+
+      case 6:
+        [a, b] = getTwoNumbers();
+        result = exponentiate(a, b);
+        console.log(`Result: ${a} ** ${b} = ${result.toFixed(2)}`);
+        break;
+
+      case 7:
+        console.log("Goodbye!");
+        running = false;
+        break;
+
+      default:
+        console.log("Error: Please enter a number between 1 and 7.");
+    }
+  }
+}
+
+main();
 

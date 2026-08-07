@@ -58,5 +58,50 @@
 // =============================================================================
 // YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
 // =============================================================================
+const readlineSync = require('readline-sync');
 
+// =============================================================================
+// printSingleTable — prints the multiplication table for one number (1 to 12)
+// =============================================================================
+function printSingleTable(num) {
+  console.log(`Multiplication Table for ${num}:`);
+  for (let i = 1; i <= 12; i++) {
+    console.log(`${num}  x  ${i.toString().padEnd(2)}  =  ${num * i}`);
+  }
+}
+
+// =============================================================================
+// printTablesUpToN — prints multiplication tables for every number 1 to N
+// =============================================================================
+function printTablesUpToN(n) {
+  for (let num = 1; num <= n; num++) {
+    printSingleTable(num);
+    if (num < n) {
+      console.log("---------------------------");
+    }
+  }
+}
+
+// =============================================================================
+// main — drives the program
+// =============================================================================
+function main() {
+  // ----- PART A -----
+  console.log("=== PART A: Single Table ===");
+  const num = readlineSync.questionInt("Enter a number: ");
+  printSingleTable(num);
+
+  // ----- PART B (Bonus) -----
+  console.log("\n=== PART B: Tables from 1 to N ===");
+  const n = readlineSync.questionInt("Enter N: ");
+
+  if (!Number.isInteger(n) || n <= 0) {
+    console.log("Error: N must be a positive integer.");
+    return;
+  }
+
+  printTablesUpToN(n);
+}
+
+main();
 
